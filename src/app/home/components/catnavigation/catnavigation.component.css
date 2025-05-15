@@ -1,0 +1,68 @@
+:root {
+    --primary-color: #2c3e50;        /* Dark slate blue for background color */
+    --border-color: #34495e;         /* Slightly lighter border color */
+    --underline-color: #e74c3c;      /* Vibrant red-orange underline color */
+    --transition-duration: 0.3s;     /* Duration of the transition effect */
+    --link-color: #ecf0f1;           /* Very light gray color for default links */
+    --link-hover-color: #ffffff;     /* White color for links on hover */
+    --link-padding: 0.6em;           /* Increased padding for better touch targets */
+    --link-margin: 0.3em 1.2em;       /* Increased margin for improved spacing */
+    --font-size: 1em;                /* Slightly larger font size */
+    --font-weight: 600;              /* Slightly lighter font weight */
+    --border-radius: 0.6em;          /* Slightly larger border radius */
+    --shadow-color: rgba(0, 0, 0, 0.3); /* Subtle shadow color for more depth */
+}
+
+.navigation-container {
+    max-width: 100%;
+    background-color: blanchedalmond; /* Dark background color */
+    border-top: var(--border-color) solid 2px; /* Thicker border for better visibility */
+    padding: 0.8em;                 /* Adjusted padding for improved spacing */
+    border-radius: var(--border-radius); /* Rounded corners */
+    box-shadow: 0 4px 8px var(--shadow-color); /* Enhanced shadow for depth */
+}
+
+.navigation-container li {
+    list-style-type: none;
+    display: inline-block;
+    margin: var(--link-margin);
+    padding: var(--link-padding);
+}
+
+.navigation-container li a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--link-color); /* Light gray color for links */
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    padding: 0.6em 1.2em;             /* Adjusted padding for better balance */
+    border-radius: var(--border-radius); /* Rounded corners for links */
+    transition: color var(--transition-duration), background-color var(--transition-duration), transform var(--transition-duration);
+    position: relative; /* Ensure pseudo-element positioning */
+}
+
+.navigation-container li a:hover {
+    color: var(--link-hover-color); /* White color on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background color on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.navigation-container li a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0.2em;
+    width: 100%;
+    background-color: var(--underline-color); /* Vibrant underline color */
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform var(--transition-duration), background-color var(--transition-duration);
+}
+
+.navigation-container li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    background-color: var(--underline-color); /* Ensures color is applied on hover */
+}

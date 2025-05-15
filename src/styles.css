@@ -1,0 +1,14 @@
+.your-element::after {
+    content: '';
+    display: block;
+    bottom: 0;
+    left: 0;
+    height: 0.2em;
+    background-color: red;
+    transform: scaleX(0);
+    transition-duration: 0.2s;
+}
+
+.your-element:hover::after {
+    transform: scaleX(1); /* Adjusts based on the parameter passed */
+}

@@ -1,0 +1,65 @@
+.product-details-container {
+    margin: auto;
+    padding: 2em;
+    max-width: 1200px; /* Ensures a maximum width for better layout on larger screens */
+    display: flex;
+    align-items: flex-start;
+    gap: 2em; /* Space between image and text */
+    background-color: #f8f9fa; /* Light background for the container */
+    border-radius: 1em;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container {
+    flex: 1; /* Allow the image container to take up space proportionally */
+    text-align: center; /* Center the image within the container */
+    border-radius: 1em;
+    overflow: hidden;
+    background-color: #ffffff; /* White background for better contrast */
+    border: 3px solid #007bff; /* Blue border for a pop of color */
+}
+
+.product-image-container img {
+    height: 25em;
+    width: auto; /* Maintain aspect ratio */
+    border-radius: 1em;
+    transition: transform 0.3s ease;
+}
+
+.product-image-container img:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.product-information-container {
+    flex: 2; /* Allow the info container to take up more space */
+    padding: 0 2em;
+}
+
+#product-name {
+    font-size: 2.5em; /* Slightly reduced font size for better fit */
+    font-weight: 700;
+    color: #333333; /* Darker text for readability */
+    margin-bottom: 0.5em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+}
+
+.product-price {
+    font-size: 1.4em; /* Adjusted size for better hierarchy */
+    font-weight: 500;
+    color: #007bff; /* Use a vibrant color for the price */
+    margin-bottom: 1em;
+}
+
+.product-price .price {
+    font-size: 1.8em; /* Larger size for emphasis */
+    font-weight: 600;
+    color: #e74c3c; /* Vibrant red to make the price stand out */
+}
+
+.product-description {
+    font-size: 1.3em; /* Slightly smaller font size for description */
+    font-weight: 400;
+    color: #555555; /* Subtle gray for description text */
+    line-height: 1.6; /* Increased line-height for better readability */
+    margin-top: 1em;
+}

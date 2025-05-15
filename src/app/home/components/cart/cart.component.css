@@ -1,0 +1,109 @@
+/* Main Div Styles */
+.ec-main-div {
+    text-align: center;
+    width: 90%;
+    height: 15em;
+    margin: auto;
+    margin-top: 3em;
+}
+
+.ec-main-div .ec-text {
+    font-size: 3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    color: #333; /* Dark grey for better readability */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+/* Cart Main Div Styles */
+.fc-main-div {
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    padding: 1em; /* Added padding for better spacing */
+}
+
+.fc-main-div .cart-item-card img {
+    height: 13em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow for card effect */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.fc-main-div .cart-item-card img:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.fc-main-div .cart-item-details {
+    text-align: left;
+}
+
+.fc-main-div .cart-item-details .cart-item-name {
+    font-size: 1.4em;
+    color: #444; /* Slightly lighter grey for name */
+}
+
+.fc-main-div .cart-item-details .cart-item-price {
+    float: right;
+    font-size: 1.5em;
+    color: #e74c3c; /* Red color for price */
+}
+
+.fc-main-div .cart-item-details span {
+    font-weight: 600;
+    font-size: large;
+    color: #555; /* Grey color for item details */
+}
+
+.fc-main-div .cart-summary {
+    height: fit-content;
+    border-radius: 2em;
+    background-color: aliceblue;
+    text-align: start;
+    padding: 1em; /* Added padding for better content spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for card effect */
+}
+
+.fc-main-div .cart-summary span {
+    display: block;
+    color: rgb(78, 78, 78);
+    margin: 1em 0;
+}
+
+.fc-main-div .cart-summary h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333; /* Dark grey for heading */
+    margin-bottom: 1em; /* Space below heading */
+}
+
+.fc-main-div .cart-summary .summary-total {
+    color: black;
+    font-weight: 550;
+    font-size: 1.3em; /* Slightly larger font size for total */
+}
+
+/* Field Margin Styles */
+.field-margin {
+    margin-bottom: 1em;
+}
+
+/* Submit Button Styles */
+.submit-button {
+    border: 2px solid black; /* Added border style */
+    width: 100%;
+    padding: 0.5em 1em; /* Added padding for better click area */
+    background-color: white; /* Default background color */
+    color: black;
+    font-size: 1em; /* Slightly larger font size */
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase text for emphasis */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.submit-button:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow on hover */
+}
