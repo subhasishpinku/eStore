@@ -42,12 +42,12 @@ export class UserService {
 
   createUser(user: user): Observable<any> {
     // console.log(user)
-    const url: string = 'https://estoreproject.glitch.me/api/user/signup';
+    const url: string = 'https://estoreproject.onrender.com/api/user/signup';
     return this.httpClient.post(url, user);
   }
 
   login(email: string, password: string): Observable<any> {
-    const url: string = 'https://estoreproject.glitch.me/api/user/login';
+    const url: string = 'https://estoreproject.onrender.com/api/user/login';
     return this.httpClient.post(url, { email: email, password: password });
   }
 

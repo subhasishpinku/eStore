@@ -8,7 +8,7 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
   getAllProducts(query?: string): Observable<Product[]> {
-    let url: string = 'https://estoreproject.glitch.me/api/products';
+    let url: string = 'https://estoreproject.onrender.com/api/products';
     if (query) {
       url += '?' + query;
     }
@@ -16,7 +16,7 @@ export class ProductsService {
   }
 
   getProduct(id: string): Observable<Product[]> {
-    const url: string = 'https://estoreproject.glitch.me/api/products/' + id;
+    const url: string = 'https://estoreproject.onrender.com/api/products/' + id;
     return this.httpClient.get<Product[]>(url);
   }
 }

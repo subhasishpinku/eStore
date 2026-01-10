@@ -20,7 +20,7 @@ export class OrderService {
   ) {}
 
   saveOrder(deliveryAddress: DeliveryAddress, userEmail: string): Observable<any> {
-    const url: string = 'https://estoreproject.glitch.me/api/add';
+    const url: string = 'https://estoreproject.onrender.com/api/add';
     const orderDetails: OrderItem[] = [];
   
     this.cartStore.cart.products.forEach((product) => {
@@ -56,7 +56,7 @@ export class OrderService {
   
 
   getOrders(userEmail: string): Observable<PastOrder[]> {
-    const url: string = `https://estoreproject.glitch.me/api/allorders?userEmail=${userEmail}`;
+    const url: string = `https://estoreproject.onrender.com/api/allorders?userEmail=${userEmail}`;
     const token = this.userService.token;
   
     console.log('Authorization Token:', token); // Debug log
@@ -75,7 +75,7 @@ export class OrderService {
   
 
   // getOrderProducts1(productId: string): Observable<PastOrderProduct[]> {
-  //   const url: string = `https://estoreproject.glitch.me/api/orderproducts?orderId=${productId}`;
+  //   const url: string = `https://estoreproject.onrender.com//api/orderproducts?orderId=${productId}`;
   //   console.log(productId)
   //   return this.httpClient.get<PastOrderProduct[]>(url, {
   //     headers: { authorization: this.userService.token },
@@ -83,7 +83,7 @@ export class OrderService {
   // }
 
   getOrderProducts(productId: string): Observable<PastOrderProduct[]> {
-    const url: string = `https://estoreproject.glitch.me/api/orderproducts?orderId=${productId}`;
+    const url: string = `https://estoreproject.onrender.com/api/orderproducts?orderId=${productId}`;
     const token = this.userService.token;
   
     console.log('Authorization Token:', token); // Debug log

@@ -9,7 +9,7 @@ export class CategoryService {
 
   getAllCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(
-      'https://estoreproject.glitch.me/api/categories'
+      'https://estoreproject.onrender.com/api/categories'
     );
   }
 }
