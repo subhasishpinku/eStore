@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: e-commerceproject
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist/e-commerceproject
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
