@@ -11,7 +11,10 @@ export const authGuard = (next: ActivatedRouteSnapshot) => {
     .isUserAuthenticated$
     .pipe(
       map((isAuthenticated) =>
-        isAuthenticated ? true : createUrlTreeFromSnapshot(next, ['/', 'home', 'login'])
+        // isAuthenticated ? true : createUrlTreeFromSnapshot(next, ['/', 'home', 'login'])
+                isAuthenticated ? true : createUrlTreeFromSnapshot(next, ['/home/login'])
+
+
       )
     );
 };

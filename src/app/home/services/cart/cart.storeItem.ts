@@ -1,21 +1,27 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StoreItem } from '../../../shared/storeItem';
 import { Cart, CartItem } from '../../types/cart.type';
 import { Product } from '../../types/products.type';
-import { Observable } from 'rxjs';
 
+@Injectable({ providedIn: 'root' })
 export class CartStoreItem extends StoreItem<Cart> {
+
   constructor() {
-    const storedCart: any = sessionStorage.getItem('cart');
-    if (storedCart) {
-      super(JSON.parse(storedCart));
-    } else {
-      super({
-        products: [],
-        totalAmount: 0,
-        totalProducts: 0,
-      });
-    }
+    const storedCart = sessionStorage.getItem('cart');
+
+    super(
+      storedCart
+        ? JSON.parse(storedCart)
+        : {
+            products: [],
+            totalAmount: 0,
+            totalProducts: 0,
+          }
+    );
   }
+
+  // -------------------- GETTERS --------------------
 
   get cart$(): Observable<Cart> {
     return this.value$;
@@ -25,63 +31,86 @@ export class CartStoreItem extends StoreItem<Cart> {
     return this.value;
   }
 
+  // -------------------- ACTIONS --------------------
+
   addProduct(product: Product): void {
-    const cartProduct: CartItem | undefined = this.cart.products.find(
-      (cartProduct) => cartProduct.product._id === product._id
+    const cart = structuredClone(this.cart);
+
+    const existing = cart.products.find(
+      (item) => item.product._id === product._id
     );
-     
-    if (!cartProduct) {
-      this.cart.products = [
-        ...this.cart.products,
-        { product: product, amount: Number(product.price), quantity: 1 },
-      ];
+
+    if (existing) {
+      existing.quantity += 1;
+      existing.amount += Number(product.price);
     } else {
-      cartProduct.quantity++;
-      cartProduct.amount += Number(product.price);
+      cart.products.push({
+        product,
+        quantity: 1,
+        amount: Number(product.price),
+      });
     }
-    this.cart.totalAmount += Number(product.price);
-    ++this.cart.totalProducts;
-    this.saveCart();
+
+    cart.totalProducts += 1;
+    cart.totalAmount += Number(product.price);
+
+    this.updateCart(cart);
   }
 
   decreaseProductQuantity(cartItem: CartItem): void {
-    const cartProduct: CartItem | undefined = this.cart.products.find(
-      (cartProduct) => cartProduct.product._id === cartItem.product._id
+    const cart = structuredClone(this.cart);
+
+    const item = cart.products.find(
+      (p) => p.product._id === cartItem.product._id
     );
-    if (cartProduct) {
-      if (cartProduct.quantity === 1) {
-        this.removeProduct(cartItem);
-      } else {
-        cartProduct.quantity--;
-        this.cart.totalAmount -= Number(cartItem.product.price);
-        --this.cart.totalProducts;
-        this.saveCart();
-      }
+
+    if (!item) return;
+
+    if (item.quantity === 1) {
+      this.removeProduct(cartItem);
+      return;
     }
+
+    item.quantity -= 1;
+    item.amount -= Number(item.product.price);
+    cart.totalProducts -= 1;
+    cart.totalAmount -= Number(item.product.price);
+
+    this.updateCart(cart);
   }
 
   removeProduct(cartItem: CartItem): void {
-    this.cart.products = this.cart.products.filter(
+    const cart = structuredClone(this.cart);
+
+    cart.products = cart.products.filter(
       (item) => item.product._id !== cartItem.product._id
     );
-    this.cart.totalProducts -= cartItem.quantity;
-    this.cart.totalAmount -= cartItem.amount;
-    if (this.cart.totalProducts === 0) {
-      sessionStorage.clear();
+
+    cart.totalProducts -= cartItem.quantity;
+    cart.totalAmount -= cartItem.amount;
+
+    if (cart.totalProducts <= 0) {
+      this.clearCart();
     } else {
-      this.saveCart();
+      this.updateCart(cart);
     }
   }
 
-  saveCart(): void {
-    sessionStorage.clear();
-    sessionStorage.setItem('cart', JSON.stringify(this.cart));
+  clearCart(): void {
+    const emptyCart: Cart = {
+      products: [],
+      totalAmount: 0,
+      totalProducts: 0,
+    };
+
+    this.setValue(emptyCart);
+    sessionStorage.removeItem('cart');
   }
 
-  clearCart(): void {
-    sessionStorage.clear();
-    this.cart.products = [];
-    this.cart.totalAmount = 0;
-    this.cart.totalProducts = 0;
+  // -------------------- PRIVATE --------------------
+
+  private updateCart(cart: Cart): void {
+    this.setValue(cart);
+    sessionStorage.setItem('cart', JSON.stringify(cart));
   }
 }
