@@ -14,6 +14,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
+      // ✅ /home → /home/products
+      {
+        path: '',
+        redirectTo: 'products',
+        pathMatch: 'full',
+      },
+
       {
         path: 'products',
         component: ProductsGalleryComponent,
